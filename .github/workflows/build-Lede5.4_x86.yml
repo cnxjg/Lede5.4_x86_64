@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt
+name: Build OpenWRT Lede5.4_x86
 
 on:
   repository_dispatch:
@@ -31,6 +31,8 @@ env:
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: false
+  SERVERCHAN_SCKEY: true
+  USE_CACHEWRTBUILD: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -38,6 +40,13 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+    - name: 电报开始通知
+      run: |
+        if [[ "${SERVERCHAN_SCKEY}" == "true" ]]; then
+          curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=🎉 主人：
+          您正在使用Mouse3701仓库的Lede5.4_x86.config编译您自己的固件,请耐心等待...... 😋" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
+        fi
+       
     - name: Checkout
       uses: actions/checkout@main
 
@@ -188,3 +197,10 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: 电报结束通知
+      run: |
+        if [[ "${SERVERCHAN_SCKEY}" == "true" ]]; then
+          curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=我亲爱的✨主人✨：
+          您使用Mouse3701仓库的Lede5.4_x86.config固件顺利编译完成了！💐" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
+        fi
