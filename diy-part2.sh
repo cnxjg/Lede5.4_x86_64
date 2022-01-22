@@ -18,4 +18,4 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/M
 #修改密码为空，自定义名称
 #ZZZ="package/lean/default-settings/files/zzz-default-settings"
 #sed -i '/CYXluq4wUazHjmCDBCqXF/d' 
-sed -i 's/OpenWrt /Mouse3701 compiled in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g'
+sed -i "s/OpenWrt /Mouse3701 compiled in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g"
