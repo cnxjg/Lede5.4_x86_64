@@ -13,8 +13,9 @@
 # Modify default IP
 sed -i 's/192.168.1.1/10.10.10.5/g' package/base-files/files/bin/config_generate
 
-# argon
+#修改默认主题为argon
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
-
-# Mouse3701
-sed -i 's/OpenWrt /Mouse3701 compiled in $(TZ=UTC-8 date +%Y.%m.%d) @ OpenWrt /g'
+#修改密码为空，自定义名称
+#ZZZ="package/lean/default-settings/files/zzz-default-settings"
+#sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ
+sed -i "s/OpenWrt /Mouse3701 compiled in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ（#为自定义内容）
