@@ -46,7 +46,7 @@ jobs:
           curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=🎉 主人：
           您正在使用Mouse3701仓库的Lede5.4_x86.config编译您自己的固件,请耐心等待...... 😋" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
         fi
-       
+
     - name: 检查
       uses: actions/checkout@main
 
@@ -62,7 +62,6 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-	
 
     - name: 设置当前的日期
       id: date
