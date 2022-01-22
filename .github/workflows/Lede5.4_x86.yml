@@ -62,7 +62,8 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-		
+	
+
     - name: 设置当前的日期
       id: date
       run: |
